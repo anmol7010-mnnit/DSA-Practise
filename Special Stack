@@ -1,0 +1,44 @@
+
+#include <bits/stdc++.h>
+
+void push(stack<int>& s, int a) {
+	s.push(a);
+}
+
+bool isFull(stack<int>& s,int n) {
+	if (s.size() == n) {
+	    return 1;
+	}
+	else {
+	    return 0;
+	}
+}
+
+bool isEmpty(stack<int>& s) {
+	if (s.empty()) {
+	    return 1;
+	}
+	else {
+	    return 0;
+	}
+}
+
+int pop(stack<int>& s) {
+	int x = s.top();
+	s.pop();
+	return x;
+}
+
+int getMin(stack<int>& s) {
+	
+	vector <int> nums;
+	
+	while (!s.empty()) {
+	    nums.push_back(s.top());
+	    s.pop();
+	}
+	
+	sort(nums.begin(),nums.end());
+	
+	return nums[0];
+}
