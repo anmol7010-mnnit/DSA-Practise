@@ -1,0 +1,56 @@
+
+
+/*Complete the function below
+Node is as follows:
+struct Node {
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+*/
+
+// Return the level (0-indexed) with maximum number of nodes.
+int maxNodeLevel(Node *root)
+{
+    if (root == NULL)
+        return NULL;
+        
+    int cnt = 0;
+    int l = 0;
+    int ans = 0;
+    int maxi = INT_MIN;
+    
+    queue <Node*> q;
+    
+    q.push(root);
+    
+    while(!q.empty()) {
+        int size = q.size();
+        for (int i = 0; i < size; i++) {
+            Node* front = q.front();
+            q.pop();
+            
+            cnt++;
+            
+            if (front -> left)
+                q.push(front -> left);
+            if (front -> right)
+                q.push(front -> right);
+        }
+        
+        if (cnt > maxi) {
+            maxi = cnt;
+            ans = l;
+        }
+        
+        cnt = 0;
+        l++;
+    }
+    
+    return ans;
+}
