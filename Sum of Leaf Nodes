@@ -1,0 +1,26 @@
+
+
+/*Structure of the node of the binary tree is as
+struct Node
+{
+	int data;
+	Node *left, *right;
+};*/
+// function should return the sum of all the 
+// leaf nodes of the binary tree 
+int sumLeaf(Node* root)
+{
+    if (root == NULL)
+        return 0;
+    
+    int sum = 0;    
+        
+    if (root -> left == NULL && root -> right == NULL) {
+        sum += root -> data;
+    }
+    
+    int left = sumLeaf(root -> left);
+    int right = sumLeaf(root -> right);
+    
+    return left+right+sum;
+}
