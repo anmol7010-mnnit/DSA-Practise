@@ -1,0 +1,113 @@
+//User function Template for C++
+
+/*
+struct Node {
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+*/
+class Solution {
+  public:
+    Node *ParentMapping(map<Node*,Node*>&parentNode,Node *root,int target)
+        {
+            Node *res =NULL;
+           
+                parentNode[root]=NULL;
+            
+            queue<Node*>q;
+                q.push(root);
+                while(!q.empty())
+                { 
+                    Node *front = q.front();
+                    q.pop();
+                    if(front->data==target)
+                    { 
+                        res = front;
+                    }
+                    if(front->left)
+                    { 
+                        parentNode[front->left] = front;
+                        q.push(front->left);
+                    }
+                     if(front->right)
+                    { 
+                        parentNode[front->right] = front;
+                        q.push(front->right);
+                    }
+                }
+                return res;
+        }
+        
+       
+       //rest of the step done 
+ int BurnTree(Node *TargetNode, map<Node*,Node*>&parentNode)
+     { 
+            map<Node*,bool>visited;
+            queue<Node*>q;
+            
+            int time =0;
+            q.push(TargetNode);
+            bool flag =0;
+            
+            visited[TargetNode] = true;
+            while(!q.empty())
+            { 
+                //size isliye chaiye kyu ki iske neighbouring node (which is left right and parent) que mein daalne ke liye
+                int size = q.size();
+                for(int i=0;i<size;i++)
+                { 
+                    //processing neighbouring nodes
+                    Node *front = q.front();
+                    q.pop();
+                    if(front->left && !visited[front->left])
+                    { 
+                        flag =1;
+                        q.push(front->left);
+                        visited[front->left] =1;
+                    }
+                     if(front->right && !visited[front->right] )
+                    { 
+                        flag =1;
+                        q.push(front->right);
+                        visited[front->right] =1;
+                    }
+                    if(parentNode[front] && !visited[parentNode[front]])
+                    { 
+                        flag =1;
+                        q.push(parentNode[front]);
+                        visited[parentNode[front]] =1;
+                    }
+                    
+                }
+                
+                if(flag ==1){time++;}
+                flag =0;
+            }
+            return time;
+            
+     }
+ 
+    int minTime(Node* root, int target) 
+    {
+       //Algo:
+       
+      //step1: to get the parent node of eeach subnode create map  by level order trav
+      //step2: reach to the target node
+      //step3: after reaching the node create a visited map and do level order trav
+      //step4: if in queue  time++;
+      //step5: return time
+      
+      map<Node*,Node*>parentNode;
+      Node *TargetNode = ParentMapping(parentNode,root,target);
+      
+          int time = BurnTree(TargetNode,parentNode);
+          
+          return time;
+    }
+};
