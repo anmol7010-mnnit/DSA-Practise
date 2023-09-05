@@ -1,0 +1,17 @@
+BinaryTreeNode<int>* solve(vector <int>&preorder, int s, int e) {
+    if (s > e) 
+        return NULL;
+
+    int mid = s+(e-s)/2;
+
+    BinaryTreeNode<int>* root = new BinaryTreeNode<int>(preorder[mid]);
+    root -> left = solve(preorder,s,mid-1);
+    root -> right = solve(preorder,mid+1,e);
+
+    return root;
+}
+
+BinaryTreeNode<int>* preorderToBST(vector<int> &preorder) {
+    sort(preorder.begin(),preorder.end());
+    return solve(preorder,0,preorder.size()-1);
+}
