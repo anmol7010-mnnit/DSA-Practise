@@ -1,0 +1,37 @@
+class Solution{
+    public:
+    long long range(long long A[], long long N, long long K) {
+        
+        priority_queue <long long> pq;
+        
+        for (long long i = 0; i < K; i++) {
+            pq.push(A[i]);
+        }
+        
+        for (long long i = K; i < N; i++) {
+            if (pq.top() > A[i]) {
+                pq.pop();
+                pq.push(A[i]);
+            }
+        }
+        
+        return pq.top();
+        
+    }
+    
+    long long sumBetweenTwoKth( long long A[], long long N, long long K1, long long K2)
+    {
+        long long first = range(A,N,K1);
+        long long sec = range(A,N,K2);
+        
+        long long sum = 0;
+        
+        for (long long i = 0; i < N; i++) {
+            if (A[i] > first && A[i] < sec) {
+                sum += A[i];
+            }
+        }
+        
+        return sum;
+    }
+};
