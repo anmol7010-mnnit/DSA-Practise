@@ -1,0 +1,50 @@
+void returndata(Node* root,vector<int>&vec)
+{
+    if(root==NULL)
+    {
+        return ;
+    }
+    
+    
+    returndata(root->left,vec);
+    vec.push_back(root->data);
+    returndata(root->right,vec);
+}
+
+class Solution
+{
+    public:
+    //Function to find the nodes that are common in both BST. 
+    vector <int> findCommon(Node *root1, Node *root2)
+    {
+        vector<int>ans(0);
+        vector<int>v1(0);
+        vector<int>v2(0);
+        returndata(root1,v1);
+        returndata(root2,v2);
+        
+        
+        
+        int v1p=0,v2p=0;
+        
+        while(v1p<v1.size()&&v2p<v2.size())
+        {
+            if(v1[v1p]==v2[v2p])
+            {
+                ans.push_back(v1[v1p]);
+                v1p++;
+                v2p++;
+            }
+            
+            else if(v1[v1p]>v2[v2p])
+            {
+                v2p++;
+            }
+            else
+            {
+                v1p++;
+            }
+        }
+        return ans;
+    }
+};
