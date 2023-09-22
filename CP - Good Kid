@@ -1,0 +1,42 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--) {
+        
+        int mini = INT_MAX;
+        
+        long long n;
+        cin >> n;
+        
+        long long arr[n];
+        
+        for (long long i = 0; i < n; i++) {
+            cin >> arr[i];
+        }
+        
+        sort(arr,arr+n);
+        
+        arr[0]++;
+        
+        long long pro = 1;
+        
+        for (long long i = 0; i < n; i++) {
+            pro = pro * arr[i];
+        }
+        
+        cout << pro << endl;
+        
+    }
+}
