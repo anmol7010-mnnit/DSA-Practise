@@ -1,0 +1,21 @@
+class Solution
+{
+public:
+   int fun(Node* root,int &sum){
+       if(root==NULL){
+           return 0;
+       }
+       int l=fun(root->left,sum);
+       int r=fun(root->right,sum);
+       
+        sum+=abs(l-r);
+        return root->data+l+r;
+   }
+   
+    int tiltTree(Node *root)
+    {
+        int sum=0;
+      fun(root,sum);
+      return sum;
+    }
+};
