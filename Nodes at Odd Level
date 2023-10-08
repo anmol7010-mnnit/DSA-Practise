@@ -1,0 +1,34 @@
+class Solution
+{
+public:
+    vector<Node *> nodesAtOddLevels(Node *root)
+    {
+        queue <pair<Node*,int>> q;
+        
+        q.push({root,1});
+        
+        vector <Node *> ans;
+        
+        while (!q.empty()) {
+            pair<Node*,int> top = q.front();
+            q.pop();
+            
+            Node* temp = top.first;
+            int lvl = top.second;
+            
+            if (lvl % 2 != 0) {
+                ans.push_back(temp);
+            }
+            
+            if (temp -> left) {
+                q.push({temp -> left,lvl+1});
+            }
+            
+            if (temp -> right) {
+                q.push({temp -> right,lvl+1});
+            }
+        }
+        
+        return ans;
+    }
+};
