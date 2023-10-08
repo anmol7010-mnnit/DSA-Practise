@@ -1,0 +1,30 @@
+
+class Solution{
+  public:
+    /*You are required to complete this method*/
+    bool check(Node *root)
+    {
+        //Your code here
+        queue<pair<Node*,int>>q;
+        int mlvl = INT_MAX;
+        
+        q.push({root,0});
+        
+        while(!q.empty()){
+            auto it = q.front();
+            q.pop();
+            Node* t = it.first;
+            int lvl = it.second;
+            if(t->left==NULL && t->right==NULL){
+                if(lvl<mlvl) mlvl = lvl;
+                if(lvl>mlvl){
+                    return false;
+                }
+            }
+            if(t->left) q.push({t->left,lvl+1});
+            if(t->right) q.push({t->right,lvl+1});
+        }
+        return true;
+        
+    }
+};
