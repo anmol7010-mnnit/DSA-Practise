@@ -1,0 +1,26 @@
+class Solution{
+
+public:
+    int floor(Node* root, int x) {
+        
+        Node* temp = root;
+        
+        int ans = -1;
+        
+        while (temp != NULL) {
+            if (temp -> data == x) {
+                return temp -> data;
+            }
+            else if (temp -> data < x) {
+                ans = temp -> data;
+                temp = temp -> right;
+            } 
+            else {
+                temp = temp -> left;
+            }
+        }
+        
+        return ans;
+        
+    }
+};
