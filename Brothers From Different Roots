@@ -1,0 +1,42 @@
+class Solution
+{
+public:
+     void make(Node* &root, vector<int> &v)
+    {
+        if(root==NULL)
+        return ;
+        make(root->left,v);
+        v.push_back(root->data);
+        make(root->right,v);
+    }
+    int countPairs(Node* root1, Node* root2, int x)
+    {
+        vector<int> v1;
+        vector<int> v2;
+  
+        make(root1,v1);
+        make(root2,v2);
+        
+        int cnt = 0;
+     
+        int s = 0;
+        int e = v2.size()-1;
+        
+        while (s < v1.size() && e >= 0) {
+            if (v1[s] + v2[e] == x) {
+                cnt++;
+                s++;
+                e--;
+            }
+            else if (v1[s] + v2[e] > x) {
+                e--;
+            }
+            else {
+                s++;
+            }
+        }
+        
+        return cnt;
+
+    }
+};
