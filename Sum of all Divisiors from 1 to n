@@ -1,0 +1,6 @@
+long ans=0;
+    for(long i=1;i<=N;i++){
+            long times=N/i;
+            ans+=(i*times);
+     }
+   return ans;
