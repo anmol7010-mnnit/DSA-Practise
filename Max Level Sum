@@ -1,4 +1,4 @@
-/* Tree node structure  used in the program
+/* Updated Tree node structure  used in the program
  struct Node
  {
      int data;
