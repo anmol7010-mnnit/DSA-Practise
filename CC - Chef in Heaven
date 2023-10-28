@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int t;
+    cin>>t;
+    while(t--){
+        int l;
+        cin>>l;
+        string s;
+        cin>>s;
+        int e=0,o=0,sac=0;
+        for(int i=0;i<s.size();i++){
+            if(s[i]=='1')e++;
+            else o++;
+            
+            if(e>=o){
+                sac=1;
+                break;
+            }
+        }
+        if(sac==1)cout<<"YES"<<endl;
+        else cout<<"NO"<<endl;
+    }
+	return 0;
+}
