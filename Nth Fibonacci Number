@@ -1,0 +1,16 @@
+// User function Template for C++
+class Solution {
+  public:
+    int nthFibonacci(int n) {
+        int M = 1000000007;
+       int prev2 = 0;
+       int prev1 = 1;
+       
+       for (int i = 2; i <= n; i++) {
+           int curr = (prev1%M+prev2%M)%M;
+           prev2 = prev1;
+           prev1 = curr;
+       }
+       return prev1;
+    }
+};
