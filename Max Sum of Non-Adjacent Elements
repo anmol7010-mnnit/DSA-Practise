@@ -1,0 +1,22 @@
+class Solution{
+public:	
+	// calculate the maximum sum with out adjacent
+	int findMaxSum(int *arr, int n) {
+	    
+	    vector <int> dp(n+1,-1);
+	    
+	    int neg = 0;
+	    dp[0] = arr[0];
+	    
+    
+        for (int ind = 1; ind < n; ind++) {
+            
+            int take = dp[ind-2] + arr[ind];
+	        int not_take = dp[ind-1] + 0;  
+	        
+	        dp[ind] = max(take,not_take);
+        }
+	    
+	    return dp[n-1];
+	}
+};
